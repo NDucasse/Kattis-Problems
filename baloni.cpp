@@ -1,0 +1,45 @@
+/*
+There are N balloons floating in the air in a large room, lined up from left to right. 
+Young Perica likes to play with arrows and practice his hunting abilities. 
+He shoots an arrow from the left to the right side of the room from an arbitrary height he chooses. 
+The arrow moves from left to right, at a chosen height H until it finds a balloon. 
+The moment when an arrow touches a balloon, the balloon pops and disappears and the arrow continues
+its way from left to right at a height decreased by 1. 
+Therefore, if the arrow was moving at height H, after popping the balloon it travels on height H−1.
+
+Our hero’s goal is to pop all the balloons using as little arrows as possible.
+
+Input
+The first line of input contains the integer N (1≤N≤1 000 000).
+The second line of input contains an array of N integers Hi. 
+Each integer Hi (1≤Hi≤1 000 000) is the height at which the i-th balloon floats, respectively from left to right.
+
+Output
+The first and only line of output must contain the minimal number of times
+Pero needs to shoot an arrow so that all balloons are popped.
+*/
+
+#include <iostream>
+#include <vector>
+using namespace std;
+
+int main() {
+    vector<int> count(1000001);
+    int value;
+    int nums;
+    
+    cin >> nums;
+    for(int i = 0; i<nums; i++) {
+        cin >> value;
+        count[value]++;
+        if(count[value+1] != 0) {
+            count[value+1]--;
+        }
+    }
+    
+    int sum = 0;
+    for(int i = 0; i<count.size(); i++) {
+        sum+=count[i];
+    }
+    cout << sum << endl;
+}
